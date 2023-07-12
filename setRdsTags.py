@@ -1,4 +1,5 @@
 import boto3
+import sys
 
 def set_autostart_autostop_tags(cluster_name, value):
     rds_client = boto3.client('rds')
@@ -21,10 +22,28 @@ def set_autostart_autostop_tags(cluster_name, value):
     except Exception as e:
         print(f"Error: {str(e)}")
 
-# Usage example
-cluster_name = 'arn:aws:rds:eu-west-2:362392363900:cluster:qa-db-1-cluster-cluster'
-value = 'True'
-set_autostart_autostop_tags(cluster_name, value)
+if __name__ == '__main__':
+    lambda_env = sys.argv[1]
+    action = sys.argv[2]
+
+    if action.lower() == 'true':
+        value = 'true'
+    elif action.lower() == 'false':
+        value = 'false'
+    else:
+        print("Invalid action. Please specify either 'true' or 'false'.")
+        sys.exit(1)
+
+    if lambda_env.lower() == 'dev':
+        cluster_name = 'arn:aws:rds:eu-west-2:362392363900:cluster:dev-db-1-cluster'
+    elif lambda_env.lower() == 'qa':
+        cluster_name = 'arn:aws:rds:eu-west-2:362392363900:cluster:qa-db-1-cluster-cluster'
+    else:
+        print("Invalid environment. Please specify either 'dev' or 'qa'.")
+        sys.exit(1)
+
+
+    set_autostart_autostop_tags(cluster_name, value)
 
 
 # arn:aws:rds:eu-west-2:362392363900:cluster:dev-db-1-cluster
