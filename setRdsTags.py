@@ -17,11 +17,15 @@ def set_autostart_autostop_tags(cluster_name, value):
 
         # Apply the updated tags to the cluster
         rds_client.add_tags_to_resource(ResourceName=cluster_name, Tags=updated_tags)
-        print(f"AutoStart and AutoStop tags set to False for cluster: {cluster_name}")
+        print(f"AutoStart and AutoStop tags set to {value} for cluster: {cluster_name}")
     except Exception as e:
         print(f"Error: {str(e)}")
 
 # Usage example
-cluster_name = 'your-cluster-name'
-value = 'False'
+cluster_name = 'arn:aws:rds:eu-west-2:362392363900:cluster:qa-db-1-cluster-cluster'
+value = 'True'
 set_autostart_autostop_tags(cluster_name, value)
+
+
+# arn:aws:rds:eu-west-2:362392363900:cluster:dev-db-1-cluster
+# arn:aws:rds:eu-west-2:362392363900:cluster:qa-db-1-cluster-cluster

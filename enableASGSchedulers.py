@@ -18,7 +18,7 @@ def update_scheduled_actions(asg_name, desired_count):
                 MinSize=0,
                 MaxSize=0,
                 DesiredCapacity=0,
-                Recurrence='0 30 * * MON-FRI'
+                Recurrence='0 19 * * MON-FRI'
             )
 
 def main(environment):
