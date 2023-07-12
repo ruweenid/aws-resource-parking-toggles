@@ -2,17 +2,25 @@
 
 *This collection comprises a set of unrefined scripts for activating/deactivating resource parking toggles. It is advised to exercise discretion when reviewing the code if one experiences significant Obsessive-Compulsive Disorder tendencies.*
 
-How to Run?
+## How to Run?
 
-To disable Schedulers
+  
+**setup AWS env**
 
-python3 setRDSTags.py dev false
-python3 disableASGSchedulers.py dev
-python3 toggle_triggers.py dev disable
+    export AWS_PROFILE=dev
 
+**to disable schedulers**
 
-To enable schedulers
+    python3 setRDSTags.py dev false
+    
+    python3 disableASGSchedulers.py dev
+    
+    python3 toggle_triggers.py dev disable
 
-python3 setRDSTags.py dev true
-python3 enableASGSchedulers.py dev
-python3 toggle_triggers.py dev enable 
+**to enable schedulers**
+
+    python3 setRDSTags.py dev true
+    
+    python3 enableASGSchedulers.py dev
+    
+    python3 toggle_triggers.py dev enable
